@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title data-i18n="meta.cart">ÁUREA · Tu carrito</title>
+  <meta name="description" content="Revisa tus pegatinas ÁUREA y completa tu pedido.">
+  <meta name="theme-color" content="#0b0a10">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" href="assets/stickers/luna.svg" type="image/svg+xml">
+</head>
+<body>
+  <a class="skip-link" href="#main" data-i18n="a11y.skip">Saltar al contenido</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">
+        <span class="brand-mark" aria-hidden="true">✦</span>
+        <span class="brand-text">
+          <strong>ÁUREA</strong>
+          <small data-i18n="brand.tag">Sticker Atelier</small>
+        </span>
+      </a>
+
+      <nav class="nav" aria-label="Principal">
+        <ul>
+          <li><a href="index.html#tienda" data-i18n="nav.shop">Tienda</a></li>
+          <li><a href="personalizador.html" data-i18n="nav.custom">Personaliza</a></li>
+          <li><a href="index.html#opiniones" data-i18n="nav.reviews">Opiniones</a></li>
+          <li><a href="index.html#faq" data-i18n="nav.faq">Preguntas</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <button class="lang-btn" id="langBtn" type="button" data-i18n-aria="header.lang">EN</button>
+        <a class="cart-btn" href="carrito.html" data-i18n-aria="header.cart">
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round">
+            <path d="M6 8h12l1.2 12H4.8L6 8z"/>
+            <path d="M9 8V6.5a3 3 0 0 1 6 0V8"/>
+          </svg>
+          <span class="cart-badge" data-cart-badge hidden>0</span>
+          <span class="fav-badge" data-fav-badge hidden>0</span>
+        </a>
+        <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="mobileNav" data-i18n-aria="header.menu">
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round">
+            <path d="M4 7h16M4 12h16M4 17h16"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <nav class="mobile-nav" id="mobileNav" aria-label="Móvil">
+      <a href="index.html#tienda" data-i18n="nav.shop">Tienda</a>
+      <a href="personalizador.html" data-i18n="nav.custom">Personaliza</a>
+      <a href="index.html#opiniones" data-i18n="nav.reviews">Opiniones</a>
+      <a href="index.html#faq" data-i18n="nav.faq">Preguntas</a>
+    </nav>
+  </header>
+
+  <main class="page-main" id="main">
+    <div class="container">
+      <div class="section-head" style="margin-bottom:38px">
+        <p class="eyebrow" data-i18n="brand.tag"></p>
+        <h1 class="h2" data-i18n="cart.title"></h1>
+        <p class="section-lead" data-i18n="cart.lead"></p>
+      </div>
+
+      <div class="pay-banner" id="payBanner" role="status" hidden></div>
+
+      <div class="cart-layout" id="cartContent" hidden>
+        <div class="cart-list" id="cartList"></div>
+
+        <aside class="summary">
+          <h2 data-i18n="cart.summary"></h2>
+          <div class="summary-row">
+            <span data-i18n="cart.subtotal"></span>
+            <span id="subtotal">0,00 €</span>
+          </div>
+          <div class="summary-row is-discount" id="discountRow" hidden>
+            <span data-i18n="cart.discount"></span>
+            <span id="discount">−0,00 €</span>
+          </div>
+          <div class="summary-row">
+            <span data-i18n="cart.shipping"></span>
+            <span id="shipping">—</span>
+          </div>
+          <div class="free-ship" id="freeShip"></div>
+          <div class="summary-total">
+            <span data-i18n="cart.total"></span>
+            <strong id="total">0,00 €</strong>
+          </div>
+
+          <div class="promo">
+            <label for="promoInput" data-i18n="cart.promo"></label>
+            <div class="promo-row">
+              <input id="promoInput" type="text" autocomplete="off" data-i18n-placeholder="cart.promoPlaceholder">
+              <button class="btn btn-ghost" type="button" id="promoBtn" data-i18n="cart.apply"></button>
+            </div>
+          </div>
+
+          <button class="btn btn-primary btn-block checkout-btn" type="button" id="checkoutBtn" data-i18n="cart.checkout"></button>
+          <a class="continue-link" href="index.html#tienda" data-i18n="cart.continue"></a>
+        </aside>
+      </div>
+
+      <div class="cart-empty" id="cartEmpty" hidden>
+        <div class="cart-empty-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round">
+            <path d="M6 8h12l1.2 12H4.8L6 8z"/>
+            <path d="M9 8V6.5a3 3 0 0 1 6 0V8"/>
+          </svg>
+        </div>
+        <h2 data-i18n="cart.empty"></h2>
+        <p data-i18n="cart.emptyLead"></p>
+        <a class="btn btn-primary" href="index.html#tienda" data-i18n="cart.emptyCta"></a>
+      </div>
+    </div>
+  </main>
+
+  <dialog class="checkout-dialog" id="checkoutDialog" aria-labelledby="checkoutTitle">
+    <div class="dialog-inner">
+      <button class="dialog-close" type="button" data-close data-i18n-aria="cart.close" aria-label="Cerrar">
+        <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+          <path d="M6 6l12 12M18 6L6 18"/>
+        </svg>
+      </button>
+      <form class="checkout-form" id="checkoutForm">
+        <div class="dialog-head">
+          <div>
+            <h2 id="checkoutTitle" data-i18n="cart.checkoutTitle"></h2>
+          </div>
+        </div>
+        <p class="dialog-lead" data-i18n="cart.checkoutLead"></p>
+        <div class="form-grid">
+          <label class="field full">
+            <span class="field-label" data-i18n="cart.name"></span>
+            <input type="text" name="name" required autocomplete="name">
+          </label>
+          <label class="field full">
+            <span class="field-label" data-i18n="cart.email"></span>
+            <input type="email" name="email" required autocomplete="email">
+          </label>
+          <label class="field full">
+            <span class="field-label" data-i18n="cart.address"></span>
+            <input type="text" name="address" required autocomplete="street-address">
+          </label>
+          <label class="field">
+            <span class="field-label" data-i18n="cart.city"></span>
+            <input type="text" name="city" required autocomplete="address-level2">
+          </label>
+          <label class="field">
+            <span class="field-label" data-i18n="cart.zip"></span>
+            <input type="text" name="zip" required autocomplete="postal-code">
+          </label>
+          <label class="field full">
+            <span class="field-label" data-i18n="cart.country"></span>
+            <input type="text" name="country" required autocomplete="country-name" data-i18n-placeholder="cart.countryPlaceholder">
+          </label>
+        </div>
+        <button class="btn btn-primary btn-block" type="submit" data-i18n="cart.placeOrder"></button>
+      </form>
+
+      <div class="success" id="checkoutSuccess">
+        <div class="success-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12.5l4.5 4.5L19 7"/>
+          </svg>
+        </div>
+        <h2 data-i18n="cart.successTitle"></h2>
+        <p data-i18n="cart.successLead"></p>
+        <span class="order-code"><span data-i18n="cart.successOrder"></span> <span id="orderCode">AUR-0000</span></span>
+        <a class="btn btn-primary" href="index.html" data-i18n="cart.successBack"></a>
+      </div>
+    </div>
+  </dialog>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="brand" href="index.html">
+            <span class="brand-mark" aria-hidden="true">✦</span>
+            <span class="brand-text">
+              <strong>ÁUREA</strong>
+              <small data-i18n="brand.tag">Sticker Atelier</small>
+            </span>
+          </a>
+          <p data-i18n="footer.about"></p>
+        </div>
+        <div class="footer-col">
+          <h3 data-i18n="footer.shopTitle"></h3>
+          <a href="index.html#tienda" data-i18n="footer.shopAll"></a>
+          <a href="personalizador.html" data-i18n="footer.custom"></a>
+          <a href="carrito.html" data-i18n="nav.shop"></a>
+        </div>
+        <div class="footer-col">
+          <h3 data-i18n="footer.helpTitle"></h3>
+          <a href="index.html#faq" data-i18n="footer.shipping"></a>
+          <a href="mailto:hola@aurea.studio" data-i18n="footer.contact"></a>
+          <a href="index.html#faq" data-i18n="nav.faq"></a>
+        </div>
+        <div class="footer-col">
+          <h3 data-i18n="footer.legalTitle"></h3>
+          <a href="legal.html#aviso" data-i18n="footer.legal"></a>
+          <a href="legal.html#privacidad" data-i18n="footer.privacy"></a>
+          <a href="legal.html#cookies" data-i18n="footer.cookies"></a>
+          <a href="legal.html#condiciones" data-i18n="footer.terms"></a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© <span id="year">2026</span> ÁUREA · <span data-i18n="footer.rights"></span></span>
+        <div class="legal-links">
+          <a href="legal.html#privacidad" data-i18n="footer.privacy"></a>
+          <a href="legal.html#cookies" data-i18n="footer.cookies"></a>
+          <span id="paymentBadge" data-i18n="footer.demo"></span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/config.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/carrito.js"></script>
+</body>
+</html>
