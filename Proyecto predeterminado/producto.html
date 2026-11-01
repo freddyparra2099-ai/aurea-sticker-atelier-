@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title data-i18n="meta.product">ÁUREA · Detalle del diseño</title>
+  <meta name="description" content="Elige tamaño, acabado y cantidad de tu pegatina ÁUREA. Vinilo premium troquelado a mano.">
+  <meta name="theme-color" content="#0b0a10">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" href="assets/stickers/luna.svg" type="image/svg+xml">
+</head>
+<body>
+  <a class="skip-link" href="#main" data-i18n="a11y.skip">Saltar al contenido</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">
+        <span class="brand-mark" aria-hidden="true">✦</span>
+        <span class="brand-text">
+          <strong>ÁUREA</strong>
+          <small data-i18n="brand.tag">Sticker Atelier</small>
+        </span>
+      </a>
+
+      <nav class="nav" aria-label="Principal">
+        <ul>
+          <li><a href="index.html#tienda" data-i18n="nav.shop">Tienda</a></li>
+          <li><a href="personalizador.html" data-i18n="nav.custom">Personaliza</a></li>
+          <li><a href="index.html#opiniones" data-i18n="nav.reviews">Opiniones</a></li>
+          <li><a href="index.html#faq" data-i18n="nav.faq">Preguntas</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <button class="lang-btn" id="langBtn" type="button" data-i18n-aria="header.lang">EN</button>
+        <a class="cart-btn" href="carrito.html" data-i18n-aria="header.cart">
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round">
+            <path d="M6 8h12l1.2 12H4.8L6 8z"/>
+            <path d="M9 8V6.5a3 3 0 0 1 6 0V8"/>
+          </svg>
+          <span class="cart-badge" data-cart-badge hidden>0</span>
+          <span class="fav-badge" data-fav-badge hidden>0</span>
+        </a>
+        <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="mobileNav" data-i18n-aria="header.menu">
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round">
+            <path d="M4 7h16M4 12h16M4 17h16"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <nav class="mobile-nav" id="mobileNav" aria-label="Móvil">
+      <a href="index.html#tienda" data-i18n="nav.shop">Tienda</a>
+      <a href="personalizador.html" data-i18n="nav.custom">Personaliza</a>
+      <a href="index.html#opiniones" data-i18n="nav.reviews">Opiniones</a>
+      <a href="index.html#faq" data-i18n="nav.faq">Preguntas</a>
+    </nav>
+  </header>
+
+  <main class="page-main" id="main">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Migas de pan">
+        <a href="index.html" data-i18n="product.home">Inicio</a>
+        <span>/</span>
+        <a href="index.html#tienda" data-i18n="product.shop">Tienda</a>
+        <span>/</span>
+        <span id="breadcrumbName">Luna Creciente</span>
+      </nav>
+
+      <p class="empty-state" id="productNotice" hidden data-i18n="product.notFound"></p>
+
+      <div class="product-layout">
+        <div class="gallery" id="gallery">
+          <span class="card-badge" id="productBadge" hidden></span>
+          <img id="productImg" src="assets/stickers/luna.svg" alt="Luna Creciente">
+          <span class="gallery-note" data-i18n="brand.tag"></span>
+        </div>
+
+        <div class="product-info">
+          <span class="card-cat" id="productCat"></span>
+          <h1 class="product-title" id="productName">Luna Creciente</h1>
+          <div class="rating-row">
+            <span class="stars" role="img" aria-label="5/5">★★★★★</span>
+            <span id="ratingText">4,9 · 214 <span data-i18n="product.rating"></span></span>
+          </div>
+          <p class="product-price" id="productPrice">6,50 €</p>
+          <p class="product-desc" id="productDesc"></p>
+
+          <div class="opt-group">
+            <span class="opt-label" id="sizeLabel" data-i18n="product.size"></span>
+            <div class="seg" role="group" aria-labelledby="sizeLabel">
+              <button type="button" data-size="S" data-i18n="product.sizeS"></button>
+              <button type="button" data-size="M" class="is-active" data-i18n="product.sizeM"></button>
+              <button type="button" data-size="L" data-i18n="product.sizeL"></button>
+            </div>
+          </div>
+
+          <div class="opt-group">
+            <span class="opt-label" id="finishLabel" data-i18n="product.finish"></span>
+            <div class="seg" role="group" aria-labelledby="finishLabel">
+              <button type="button" data-finish="matte" class="is-active" data-i18n="product.matte"></button>
+              <button type="button" data-finish="gloss" data-i18n="product.gloss"></button>
+              <button type="button" data-finish="holo" data-i18n="product.holo"></button>
+            </div>
+          </div>
+
+          <div class="opt-group">
+            <span class="opt-label" id="qtyLabel" data-i18n="product.qty"></span>
+            <div class="qty" role="group" aria-labelledby="qtyLabel">
+              <button type="button" id="qtyMinus" aria-label="−">−</button>
+              <span id="qtyValue">1</span>
+              <button type="button" id="qtyPlus" aria-label="+">+</button>
+            </div>
+          </div>
+
+          <div class="product-actions">
+            <button class="btn btn-primary" type="button" id="addBtn">
+              <span data-i18n="product.add"></span>
+              <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+                <path d="M5 12h14M12 5v14"/>
+              </svg>
+            </button>
+            <button class="btn btn-ghost" type="button" id="productFav" data-fav-placeholder data-i18n-aria="shop.favAdd" aria-pressed="false">
+              <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78 19 19 0 0 0 2.16 2.16c1.04 1.04 2.4 1.6 3.77 1.6 1.37 0 2.73-.56 3.77-1.6a19 19 0 0 0 2.16-2.16 5.5 5.5 0 0 0 0-7.78z"/></svg>
+            </button>
+          </div>
+
+          <a class="custom-link" href="personalizador.html">
+            <span data-i18n="product.customCta"></span>
+            <span aria-hidden="true">→</span>
+          </a>
+
+          <div class="accordion">
+            <details open>
+              <summary data-i18n="product.details"></summary>
+              <p data-i18n="product.materialText"></p>
+            </details>
+            <details>
+              <summary data-i18n="product.shipping"></summary>
+              <p data-i18n="product.shippingText"></p>
+            </details>
+            <details>
+              <summary data-i18n="product.care"></summary>
+              <p data-i18n="product.careText"></p>
+            </details>
+            <details>
+              <summary data-i18n="product.includes"></summary>
+              <p data-i18n="product.includesText"></p>
+            </details>
+          </div>
+        </div>
+      </div>
+
+      <section class="related">
+        <div class="related-head">
+          <h2 data-i18n="product.related"></h2>
+        </div>
+        <div class="grid-products" id="relatedGrid"></div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="brand" href="index.html">
+            <span class="brand-mark" aria-hidden="true">✦</span>
+            <span class="brand-text">
+              <strong>ÁUREA</strong>
+              <small data-i18n="brand.tag">Sticker Atelier</small>
+            </span>
+          </a>
+          <p data-i18n="footer.about"></p>
+        </div>
+        <div class="footer-col">
+          <h3 data-i18n="footer.shopTitle"></h3>
+          <a href="index.html#tienda" data-i18n="footer.shopAll"></a>
+          <a href="personalizador.html" data-i18n="footer.custom"></a>
+          <a href="carrito.html" data-i18n="nav.shop"></a>
+        </div>
+        <div class="footer-col">
+          <h3 data-i18n="footer.helpTitle"></h3>
+          <a href="index.html#faq" data-i18n="footer.shipping"></a>
+          <a href="mailto:hola@aurea.studio" data-i18n="footer.contact"></a>
+          <a href="index.html#faq" data-i18n="nav.faq"></a>
+        </div>
+        <div class="footer-col">
+          <h3 data-i18n="footer.legalTitle"></h3>
+          <a href="legal.html#aviso" data-i18n="footer.legal"></a>
+          <a href="legal.html#privacidad" data-i18n="footer.privacy"></a>
+          <a href="legal.html#cookies" data-i18n="footer.cookies"></a>
+          <a href="legal.html#condiciones" data-i18n="footer.terms"></a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© <span id="year">2026</span> ÁUREA · <span data-i18n="footer.rights"></span></span>
+        <div class="legal-links">
+          <a href="legal.html#privacidad" data-i18n="footer.privacy"></a>
+          <a href="legal.html#cookies" data-i18n="footer.cookies"></a>
+          <span id="paymentBadge" data-i18n="footer.demo"></span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/config.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/producto.js"></script>
+</body>
+</html>

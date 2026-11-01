@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-label="Luna creciente dorada">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f3dcae"/>
+      <stop offset=".55" stop-color="#d9ae6d"/>
+      <stop offset="1" stop-color="#a8793f"/>
+    </linearGradient>
+    <radialGradient id="sky" cx="50%" cy="42%" r="62%">
+      <stop offset="0" stop-color="#2a2140"/>
+      <stop offset="1" stop-color="#120f1c"/>
+    </radialGradient>
+    <mask id="moon">
+      <rect width="400" height="400" fill="#fff"/>
+      <circle cx="248" cy="168" r="102" fill="#000"/>
+    </mask>
+  </defs>
+  <circle cx="200" cy="200" r="178" fill="#f7f1e6"/>
+  <circle cx="200" cy="200" r="152" fill="url(#sky)"/>
+  <circle cx="200" cy="200" r="114" fill="url(#g)" mask="url(#moon)"/>
+  <g fill="url(#g)">
+    <path d="M292 268l4 12 12 4-12 4-4 12-4-12-12-4 12-4z"/>
+    <path d="M118 106l3 9 9 3-9 3-3 9-3-9-9-3 9-3z"/>
+    <path d="M300 118l2.5 7.5 7.5 2.5-7.5 2.5-2.5 7.5-2.5-7.5-7.5-2.5 7.5-2.5z"/>
+  </g>
+  <circle cx="268" cy="128" r="4" fill="#f7f1e6" opacity=".8"/>
+</svg>
