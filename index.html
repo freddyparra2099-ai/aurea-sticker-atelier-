@@ -76,20 +76,6 @@
             </a>
             <a class="btn btn-ghost" href="personalizador.html" data-i18n="hero.ctaCustom"></a>
           </div>
-          <div class="stats">
-            <div class="stat">
-              <strong data-i18n="hero.stat1"></strong>
-              <span data-i18n="hero.stat1Label"></span>
-            </div>
-            <div class="stat">
-              <strong data-i18n="hero.stat2"></strong>
-              <span data-i18n="hero.stat2Label"></span>
-            </div>
-            <div class="stat">
-              <strong data-i18n="hero.stat3"></strong>
-              <span data-i18n="hero.stat3Label"></span>
-            </div>
-          </div>
         </div>
 
         <div class="hero-art" aria-hidden="true">
@@ -207,44 +193,40 @@
       <div class="container">
         <div class="section-head center">
           <p class="eyebrow" data-i18n="reviews.kicker"></p>
-          <h2 class="h2" data-i18n="reviews.title"></h2>
-          <p class="section-lead" data-i18n="reviews.lead"></p>
+          <h2 class="h2" data-i18n="reviews.heading"></h2>
+          <p class="section-lead" data-i18n="reviews.empty"></p>
         </div>
-        <div class="reviews-grid">
-          <article class="review">
-            <div class="stars" role="img" aria-label="5/5">★★★★★</div>
-            <p class="review-quote" data-i18n="reviews.r1"></p>
-            <div class="review-author">
-              <span class="avatar" aria-hidden="true">MG</span>
-              <div>
-                <strong data-i18n="reviews.n1"></strong>
-                <span data-i18n="reviews.verified"></span>
-              </div>
-            </div>
-          </article>
-          <article class="review">
-            <div class="stars" role="img" aria-label="5/5">★★★★★</div>
-            <p class="review-quote" data-i18n="reviews.r2"></p>
-            <div class="review-author">
-              <span class="avatar" aria-hidden="true">DR</span>
-              <div>
-                <strong data-i18n="reviews.n2"></strong>
-                <span data-i18n="reviews.verified"></span>
-              </div>
-            </div>
-          </article>
-          <article class="review">
-            <div class="stars" role="img" aria-label="5/5">★★★★★</div>
-            <p class="review-quote" data-i18n="reviews.r3"></p>
-            <div class="review-author">
-              <span class="avatar" aria-hidden="true">LP</span>
-              <div>
-                <strong data-i18n="reviews.n3"></strong>
-                <span data-i18n="reviews.verified"></span>
-              </div>
-            </div>
-          </article>
-        </div>
+        <div class="reviews-grid" id="reviewsList"></div>
+
+        <form class="review-form" id="reviewForm" novalidate>
+          <h3 class="form-title" data-i18n="reviews.form.title"></h3>
+          <div class="form-grid">
+            <label class="field full">
+              <span class="field-label" data-i18n="reviews.form.name"></span>
+              <input type="text" name="name" required autocomplete="name">
+            </label>
+            <label class="field full">
+              <span class="field-label" data-i18n="reviews.form.email"></span>
+              <input type="email" name="email" required autocomplete="email">
+            </label>
+          </div>
+          <label class="field">
+            <span class="field-label" data-i18n="reviews.form.rating"></span>
+            <select name="rating" required>
+              <option value="5">5 ★</option>
+              <option value="4">4 ★</option>
+              <option value="3">3 ★</option>
+              <option value="2">2 ★</option>
+              <option value="1">1 ★</option>
+            </select>
+          </label>
+          <label class="field full">
+            <span class="field-label" data-i18n="reviews.form.message"></span>
+            <textarea name="message" rows="4" required></textarea>
+          </label>
+          <button class="btn btn-primary btn-block" type="submit" data-i18n="reviews.form.submit"></button>
+          <p class="form-status" id="reviewStatus" role="status" aria-live="polite" hidden></p>
+        </form>
       </div>
     </section>
 

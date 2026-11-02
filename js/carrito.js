@@ -17,7 +17,12 @@ function cartItemHTML(item, index) {
   if (item.type === "custom") {
     thumb = buildStickerSVG(item.custom);
     title = escapeHtml(t("custom.name"));
-    options = `<span class="cart-custom-text">“${escapeHtml(item.custom.text)}”</span> · ${formatSize(item.options.size)} · ${formatFinish(item.options.finish)}`;
+    const textDisplay = item.custom.text
+      ? escapeHtml(item.custom.text)
+      : item.custom.image
+        ? t("custom.withImage")
+        : t("custom.emptyPreview");
+    options = `<span class="cart-custom-text">“${textDisplay}”</span> · ${formatSize(item.options.size)} · ${formatFinish(item.options.finish)}`;
   } else {
     const product = productById(item.id);
     if (!product) return "";

@@ -75,24 +75,24 @@
           <p class="section-lead" data-i18n="custom.lead"></p>
 
           <div class="field" style="margin-top:32px">
-            <label class="field-label" for="customText" data-i18n="custom.textLabel"></label>
-            <input class="text-input" id="customText" type="text" maxlength="24" value="BONITA" autocomplete="off" data-i18n-placeholder="custom.textPlaceholder">
-            <p class="field-hint" data-i18n="custom.textHint"></p>
-            <div class="inspiration">
-              <span data-i18n="custom.inspiration"></span>
-              <button class="idea-chip" type="button" data-idea="TU NOMBRE" data-i18n="custom.idea1"></button>
-              <button class="idea-chip" type="button" data-idea="14.02.2026" data-i18n="custom.idea2"></button>
-              <button class="idea-chip" type="button" data-idea="SIN PRISA" data-i18n="custom.idea3"></button>
-            </div>
-          </div>
-
-          <div class="field">
             <label class="field-label" for="customImage" data-i18n="custom.imageLabel"></label>
             <input type="file" id="customImage" accept="image/*" data-i18n-aria="custom.imageAria">
             <p class="field-hint" data-i18n="custom.imageHint"></p>
             <div id="imagePreview" class="image-preview" hidden>
               <img id="imagePreviewImg" src="" alt="" style="width:100%;height:auto;border-radius:12px;border:1px solid var(--line-2)">
               <button type="button" id="imageRemove" class="btn btn-sm btn-ghost" style="margin-top:8px;width:auto;padding:0 14px" data-i18n="custom.imageRemove"></button>
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="field-label" for="customText" data-i18n="custom.textLabel"></label>
+            <input class="text-input" id="customText" type="text" maxlength="24" value="" autocomplete="off" data-i18n-placeholder="custom.textPlaceholder">
+            <p class="field-hint" data-i18n="custom.textHintOptional"></p>
+            <div class="inspiration">
+              <span data-i18n="custom.inspiration"></span>
+              <button class="idea-chip" type="button" data-idea="TU NOMBRE" data-i18n="custom.idea1"></button>
+              <button class="idea-chip" type="button" data-idea="14.02.2026" data-i18n="custom.idea2"></button>
+              <button class="idea-chip" type="button" data-idea="SIN PRISA" data-i18n="custom.idea3"></button>
             </div>
           </div>
 

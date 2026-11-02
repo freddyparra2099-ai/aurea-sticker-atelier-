@@ -90,6 +90,57 @@ function initShop() {
   }
 }
 
+const REVIEW_KEY = "aurea_reviews";
+
+function getReviews() {
+  try {
+    const raw = localStorage.getItem(REVIEW_KEY);
+    const parsed = raw ? JSON.parse(raw) : [];
+    return Array.isArray(parsed) ? parsed : [];
+  } catch (err) {
+    return [];
+  }
+}
+
+function saveReview(review) {
+  const reviews = getReviews();
+  reviews.unshift(review);
+  try {
+    localStorage.setItem(REVIEW_KEY, JSON.stringify(reviews));
+  } catch (err) {
+    /* almacenamiento no disponible */
+  }
+  renderReviews();
+}
+
+function renderReviews() {
+  const list = document.getElementById("reviewsList");
+  if (!list) return;
+
+  const reviews = getReviews();
+  if (reviews.length === 0) {
+    list.innerHTML = `<p class="empty-state" style="text-align:center;grid-column:1/-1">${t("reviews.empty")}</p>`;
+    return;
+  }
+
+  list.innerHTML = reviews.map((r) => {
+    const stars = "★".repeat(r.rating) + "☆".repeat(5 - r.rating);
+    return `
+      <article class="review">
+        <div class="stars" role="img" aria-label="${r.rating}/5">${stars}</div>
+        <p class="review-quote">${escapeHtml(r.message)}</p>
+        <div class="review-author">
+          <span class="avatar" aria-hidden="true">${r.name.charAt(0).toUpperCase()}</span>
+          <div>
+            <strong>${escapeHtml(r.name)}</strong>
+            <span>${escapeHtml(r.email)}</span>
+          </div>
+        </div>
+      </article>
+    `;
+  }).join("");
+}
+
 function initNewsletter() {
   const form = document.getElementById("newsletterForm");
   if (!form) return;
@@ -164,11 +215,36 @@ function initNewsletter() {
 document.addEventListener("DOMContentLoaded", () => {
   renderShop();
   renderTeaser();
+  renderReviews();
   initShop();
   initNewsletter();
+
+  const form = document.getElementById("reviewForm");
+  const status = document.getElementById("reviewStatus");
+  if (form) {
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const formData = new FormData(form);
+      const review = {
+        name: formData.get("name").trim(),
+        email: formData.get("email").trim(),
+        rating: Number(formData.get("rating")),
+        message: formData.get("message").trim(),
+        date: new Date().toISOString()
+      };
+      if (!review.name || !review.email || !review.message) return;
+      saveReview(review);
+      form.reset();
+      status.textContent = t("reviews.form.success");
+      status.hidden = false;
+      status.className = "form-status is-ok";
+      setTimeout(() => { status.hidden = true; }, 4000);
+    });
+  }
 });
 
 document.addEventListener("langchange", () => {
   renderShop();
   renderTeaser();
+  renderReviews();
 });

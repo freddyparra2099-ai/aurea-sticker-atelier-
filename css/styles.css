@@ -1263,6 +1263,79 @@ p {
   color: var(--muted);
 }
 
+/* ================= Formulario de opiniones ================= */
+
+.review-form {
+  max-width: 600px;
+  margin: 0 auto 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.review-form .form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.review-form .form-grid .full {
+  grid-column: 1 / -1;
+}
+
+.review-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 0;
+}
+
+.review-form .field-label {
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted-2);
+}
+
+.review-form input,
+.review-form select,
+.review-form textarea {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid var(--line-2);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  font-size: 0.9rem;
+  font-family: inherit;
+  color: var(--ink);
+}
+
+.review-form input:focus,
+.review-form select:focus,
+.review-form textarea:focus {
+  outline: none;
+  border-color: rgba(227, 189, 125, 0.6);
+}
+
+.review-form textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.form-status {
+  margin-top: 10px;
+  font-size: 0.78rem;
+  line-height: 1.55;
+}
+
+.form-status.is-ok {
+  color: var(--gold);
+}
+
+.form-status.is-error {
+  color: #e09a9a;
+}
+
 /* ================= Pie ================= */
 
 .site-footer {

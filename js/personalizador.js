@@ -3,7 +3,7 @@
 const CUSTOM_BASE_PRICE = 7.5;
 
 const customState = {
-  text: "BONITA",
+  text: "",
   font: "elegant",
   shape: "heart",
   color: "gold",

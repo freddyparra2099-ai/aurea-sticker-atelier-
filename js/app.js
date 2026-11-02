@@ -20,9 +20,9 @@ const STICKER_COLORS = {
 };
 
 function money(value) {
-  return new Intl.NumberFormat(LANG === "es" ? "es-ES" : "en-GB", {
+  return new Intl.NumberFormat(LANG === "es" ? "es-US" : "en-US", {
     style: "currency",
-    currency: "EUR"
+    currency: "USD"
   }).format(value);
 }
 

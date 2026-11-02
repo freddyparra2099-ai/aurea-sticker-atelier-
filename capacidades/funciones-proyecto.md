@@ -148,6 +148,12 @@ Al cargar el documento se ejecutan `applyI18n()` e `initHeader()`.
 
 Eventos: `DOMContentLoaded` (render + init) y `langchange` (vuelve a pintar).
 
+| Función | Qué hace |
+|---------|----------|
+| `getReviews() → Array` | Lee las opiniones guardadas en `localStorage` (`aurea_reviews`). |
+| `saveReview(review) → void` | Guarda una nueva opinión y vuelve a pintar la lista. |
+| `renderReviews() → void` | Pinta las opiniones guardadas o muestra estado vacío. |
+
 ---
 
 ## `js/producto.js` — detalle de producto

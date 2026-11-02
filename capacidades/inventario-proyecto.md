@@ -10,7 +10,7 @@ Resumen funcional de la web: qué hay, cómo se conecta y qué falta. Complement
 | Tipo | Sitio estático, sin dependencias ni backend |
 | Tecnologías | HTML5, CSS3, JavaScript clásico (sin módulos ni build) |
 | Idiomas | Español e inglés |
-| Moneda | EUR |
+| Moneda | USD |
 | Persistencia | `localStorage` + `sessionStorage` |
 | Estado | Funcional como demo; checkout simulado |
 
@@ -60,15 +60,16 @@ assets/stickers/*.svg        9 ilustraciones vectoriales
 | Regla | Valor | Dónde |
 | --- | --- | --- |
 | Tamaños | S ×0,8 · M ×1 · L ×1,7 | `SIZE_MULT` |
-| Acabados | Mate +0 € · Brillo +0,50 € · Holo +1,50 € | `FINISH_ADD` |
-| Personalizado | Base 7,50 € (tamaño M) | `CUSTOM_BASE_PRICE` |
+| Acabados | Mate +$0 · Brillo +$0.50 · Holo +$1.50 | `FINISH_ADD` |
+| Personalizado | Base $7.50 (tamaño M) | `CUSTOM_BASE_PRICE` |
 | Personalizado con foto | Imagen de fondo en el sticker (data URL) | `buildStickerSVG` |
-| Envío | 3,95 €; gratis desde 25 € (tras descuento) | `cartTotals` |
+| Envío | $3.95; gratis desde $25 (tras descuento) | `cartTotals` |
 | Promo | `AUREA10` → 10 % de descuento | `PROMO_CODE` |
 | Cantidad en ficha | 1–20 | `producto.js` |
 | Cantidad en carrito | 1–99 | `setCartQty` |
 | Código de pedido | `AUR-AA-NNNN` | `carrito.js` |
 | Favoritos | localStorage `aurea_favorites` | `app.js` |
+| Opiniones de usuarios | Formulario para dejar opinión; guarda en `aurea_reviews` | `home.js` |
 
 ## Datos y almacenamiento
 
@@ -77,6 +78,7 @@ assets/stickers/*.svg        9 ilustraciones vectoriales
 | `aurea_cart` | `localStorage` | Array JSON de artículos del carrito. |
 | `aurea_lang` | `localStorage` | `"es"` o `"en"`. |
 | `aurea_promo` | `sessionStorage` | `"1"` si la promo está activa. |
+| `aurea_reviews` | `localStorage` | Array JSON de opiniones dejadas por usuarios. |
 
 No hay cookies, analítica ni envío de datos a servidores.
 
