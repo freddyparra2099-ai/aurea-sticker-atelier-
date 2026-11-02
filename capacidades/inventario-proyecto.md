@@ -63,7 +63,7 @@ assets/stickers/*.svg        9 ilustraciones vectoriales
 | Acabados | Mate +$0 · Brillo +$0.50 · Holo +$1.50 | `FINISH_ADD` |
 | Personalizado | Base $7.50 (tamaño M) | `CUSTOM_BASE_PRICE` |
 | Personalizado con foto | Imagen de fondo en el sticker (data URL) | `buildStickerSVG` |
-| Envío | $3.95; gratis desde $25 (tras descuento) | `cartTotals` |
+| Envío | $3.95; gratis desde $5 (tras descuento) | `cartTotals` |
 | Promo | `AUREA10` → 10 % de descuento | `PROMO_CODE` |
 | Cantidad en ficha | 1–20 | `producto.js` |
 | Cantidad en carrito | 1–99 | `setCartQty` |

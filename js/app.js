@@ -2,7 +2,7 @@
 
 const CART_KEY = "aurea_cart";
 const FAV_KEY = "aurea_favorites";
-const FREE_SHIPPING = 25;
+const FREE_SHIPPING = 5;
 const SHIPPING_COST = 3.95;
 
 const STICKER_FONTS = {

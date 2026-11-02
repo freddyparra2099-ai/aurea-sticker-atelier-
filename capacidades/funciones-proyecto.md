@@ -94,7 +94,7 @@ Referencia de las funciones y constantes que ya existen en `js/`. Todas están e
 | `addToCart(item) → void` | Suma cantidad si coincide `item.key`; si no, añade. Muestra aviso. |
 | `removeFromCart(index) → void` | Elimina una línea por índice. |
 | `setCartQty(index, qty) → void` | Fija cantidad entre 1 y 99. |
-| `cartTotals(items, promo) → {subtotal, discount, shipping, total}` | Calcula totales; descuento del 10 % si `promo`; envío gratis desde 25 €. |
+| `cartTotals(items, promo) → {subtotal, discount, shipping, total}` | Calcula totales; descuento del 10 % si `promo`; envío gratis desde $5. |
 | `getFavorites() → Array` | Lee el array de favoritos desde `localStorage` (`aurea_favorites`). |
 | `saveFavorites(items) → void` | Guarda favoritos y actualiza el badge. |
 | `favCount() → number` | Número de favoritos. |

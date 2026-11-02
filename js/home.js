@@ -40,7 +40,9 @@ function renderTeaser() {
   preview.innerHTML = `
     <span class="float-chip one">${t("product.matte")}</span>
     <span class="float-chip two">${t("product.holo")}</span>
-    ${buildStickerSVG({ text: "BONITA", font: "elegant", shape: "heart", color: "gold" })}
+    <div class="teaser-image-placeholder" style="display:flex;align-items:center;justify-content:center;width:100%;height:100%;background:radial-gradient(circle at 50% 50%, #1a1a1a 0%, #000000 100%);border:2px dashed var(--line-2);border-radius:50%;color:var(--muted);font-size:0.85rem;letter-spacing:0.2em;text-transform:uppercase;">
+      SUBE TU FOTO
+    </div>
   `;
 }
 
