@@ -224,20 +224,21 @@ function stickerLines(text) {
 
 function buildStickerSVG(custom) {
   const data = custom || {};
-  const lines = stickerLines(data.text);
-  const display = lines.length ? lines : [t("custom.emptyPreview")];
-  const isPlaceholder = lines.length === 0;
-  const maxLen = Math.max(...display.map((line) => line.length), 1);
+  const hasText = data.text && data.text.trim().length > 0;
+  const lines = hasText ? stickerLines(data.text) : [];
+  const display = lines.length ? lines : [];
+  const isPlaceholder = display.length === 0 && !data.image;
+  const maxLen = display.length ? Math.max(...display.map((line) => line.length), 1) : 1;
   const fontSize = Math.max(16, Math.min(44, 182 / (maxLen * 0.52)));
   const lineHeight = fontSize * 1.12;
   const startY = 150 - ((display.length - 1) * lineHeight) / 2;
   const color = isPlaceholder ? "#b6a993" : STICKER_COLORS[data.color] || STICKER_COLORS.gold;
   const font = STICKER_FONTS[data.font] || STICKER_FONTS.elegant;
-  const label = data.text ? data.text : t("custom.name");
+  const label = hasText ? data.text : (data.image ? t("custom.withImage") : t("custom.name"));
 
   let bgImage = "";
   if (data.image) {
-    bgImage = `<image href="${escapeHtml(data.image)}" x="0" y="0" width="300" height="300" opacity="0.55" preserveAspectRatio="xMidYMid slice"/>`;
+    bgImage = `<image href="${escapeHtml(data.image)}" x="0" y="0" width="300" height="300" opacity="0.6" preserveAspectRatio="xMidYMid slice"/>`;
   }
 
   const text = display
@@ -247,7 +248,10 @@ function buildStickerSVG(custom) {
     })
     .join("");
 
-  return `<svg class="sticker-svg" viewBox="0 0 300 300" role="img" aria-label="${escapeHtml(label)}">${bgImage}${stickerShape(data.shape)}${text}</svg>`;
+  // Nunca dibujar forma de fondo. Solo imagen y/o texto, sin círculo, corazón ni estrella.
+  const shape = "";
+
+  return `<svg class="sticker-svg" viewBox="0 0 300 300" role="img" aria-label="${escapeHtml(label)}">${bgImage}${shape}${text}</svg>`;
 }
 
 /* ---------------- Tarjetas de producto ---------------- */
