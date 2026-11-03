@@ -128,7 +128,7 @@ Usa `data-i18n` en el HTML y la clave en `I18N.es` **y** `I18N.en`.
 
 ### Cambiar el estilo
 
-Los tokens están en `:root` de `css/styles.css` (`--bg`, `--gold`, `--violet`, tipografías, etc.).
+Los tokens están en `:root` de `css/styles.css` (`--bg`, `--gold`, `--violet`, `--outline`, tipografías, etc.). La paleta activa es **Coral & Mint**: fondo `#FFFDF5`, coral `#FF6B6B`, menta `#4ECDC4`, texto `#2C3E50` y bordes negros `#111111` (`--outline`).
 
 ## Tareas pendientes / límites conocidos
 

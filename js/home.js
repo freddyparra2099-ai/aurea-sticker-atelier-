@@ -40,7 +40,7 @@ function renderTeaser() {
   preview.innerHTML = `
     <span class="float-chip one">${t("product.matte")}</span>
     <span class="float-chip two">${t("product.holo")}</span>
-    <div class="teaser-image-placeholder" style="display:flex;align-items:center;justify-content:center;width:100%;height:100%;background:radial-gradient(circle at 50% 50%, #1a1a1a 0%, #000000 100%);border:2px dashed var(--line-2);border-radius:50%;color:var(--muted);font-size:0.85rem;letter-spacing:0.2em;text-transform:uppercase;">
+    <div class="teaser-image-placeholder" style="display:flex;align-items:center;justify-content:center;width:min(100%,340px);aspect-ratio:1;background:radial-gradient(circle at 50% 45%, #FFE3E0 0%, #FFFDF5 55%, #D9F7F4 100%);border:2px solid #111111;border-radius:50%;color:#2C3E50;font-size:0.85rem;letter-spacing:0.2em;text-transform:uppercase;">
       SUBE TU FOTO
     </div>
   `;
