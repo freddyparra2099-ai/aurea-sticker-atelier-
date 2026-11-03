@@ -1,28 +1,29 @@
 /* =========================================================
    ÁUREA · Sticker Atelier
-   Estética oscura, oro y violeta
+   Opción 1: Coral & Mint (vibrante, fresca y juvenil)
    ========================================================= */
 
 :root {
-  --bg: #000000;
-  --bg-2: #080808;
-  --panel: #0d0d0d;
-  --panel-2: #121212;
-  --ink: #ffffff;
-  --muted: #cccccc;
-  --muted-2: #888888;
-  --gold: #ffcc00;
-  --gold-2: #e6b800;
-  --gold-3: #cc9900;
-  --violet: #bf00ff;
-  --rose: #a020f0;
-  --mint: #00ff88;
-  --cream: #0d0d0d;
-  --line: #1a1a1a;
-  --line-2: #262626;
+  /* ÁUREA · Sticker Atelier · Opción 1: Coral & Mint (vibrante, fresca y juvenil) */
+  --bg: #FFFDF5;
+  --bg-2: #FFFDF5;
+  --panel: #FFFDF5;
+  --panel-2: #F7FAFC;
+  --ink: #2C3E50;
+  --muted: #718096;
+  --muted-2: #718096;
+  --gold: #FF6B6B;
+  --gold-2: #FF6B6B;
+  --gold-3: #FF6B6B;
+  --violet: #4ECDC4;
+  --rose: #4ECDC4;
+  --mint: #4ECDC4;
+  --cream: #FFFDF5;
+  --line: #F7FAFC;
+  --line-2: #F7FAFC;
   --radius: 18px;
   --radius-sm: 10px;
-  --shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.95);
+  --shadow: 0 30px 80px -20px rgba(44, 62, 80, 0.12);
   --serif: "Cormorant Garamond", Georgia, "Times New Roman", serif;
   --sans: "Jost", "Segoe UI", system-ui, -apple-system, sans-serif;
   --header-h: 76px;
