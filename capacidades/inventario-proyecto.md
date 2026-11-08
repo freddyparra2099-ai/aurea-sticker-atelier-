@@ -20,13 +20,13 @@ Resumen funcional de la web: qué hay, cómo se conecta y qué falta. Complement
 | --- | --- | --- |
 | `index.html` | Portada: hero, catálogo con filtros/búsqueda/orden, teaser del personalizador, opiniones, FAQ y newsletter. | `i18n`, `data`, `app`, `home` |
 | `producto.html?id=<id>` | Ficha de producto: tamaño, acabado, cantidad, relacionados y añadir al carrito. | `i18n`, `data`, `app`, `producto` |
-| `personalizador.html` | Creación de pegatina con vista previa SVG en vivo y precio dinámico. | `i18n`, `data`, `app`, `personalizador` |
+| `personalizador.html` | Creación de pegatina con foto y texto arrastrables, 20 tipografías, color libre, tamaño 5–90 cm, 8 acabados, zoom y vista previa SVG recta. | `i18n`, `data`, `app`, `personalizador` |
 | `carrito.html` | Carrito persistente, código promo, envío gratis y checkout modal de demostración. | `i18n`, `data`, `app`, `carrito` |
 
 ## Secciones de la portada
 
 - **Hero** animado (respeta `prefers-reduced-motion`).
-- **Tienda** (`#tienda`): 9 productos, 5 categorías, buscador, orden por precio y estado vacío.
+- **Tienda** (`#tienda`): 10 productos, 6 categorías, buscador, orden por precio y estado vacío.
 - **Personaliza** (`#personaliza`): teaser con vista previa.
 - **Opiniones** (`#opiniones`).
 - **FAQ** (`#faq`).
@@ -59,10 +59,12 @@ assets/stickers/*.svg        9 ilustraciones vectoriales
 
 | Regla | Valor | Dónde |
 | --- | --- | --- |
-| Tamaños | S ×0,8 · M ×1 · L ×1,7 | `SIZE_MULT` |
-| Acabados | Mate +$0 · Brillo +$0.50 · Holo +$1.50 | `FINISH_ADD` |
-| Personalizado | Base $7.50 (tamaño M) | `CUSTOM_BASE_PRICE` |
-| Personalizado con foto | Imagen de fondo en el sticker (data URL) | `buildStickerSVG` |
+| Tamaños de catálogo | S ×0,8 · M ×1 · L ×1,7 | `SIZE_MULT` |
+| Tamaño personalizado | 5–90 cm; multiplicador `max(0.5, (cm / 8) ^ 1.15)` | `priceFor` |
+| Acabados | Mate +$0 · Brillo +$0.50 · Satinado +$0.30 · Holo +$1.50 · Glitter +$1.20 · Metálico +$1.00 · Neón +$0.80 · Transparente +$0.20 | `FINISH_ADD` |
+| Personalizado | Base $7.50 (8 cm) | `CUSTOM_BASE_PRICE` |
+| Personalizado con foto | Imagen de fondo (data URL, máx. 5 MB, reducida a 1200 px) + texto opcional | `readImageFile`, `buildStickerSVG` |
+| Posición de foto/texto | Arrastrable; zoom de foto 50–300 % y de texto 50–250 % | `personalizador.js` |
 | Envío | $3.95; gratis desde $5 (tras descuento) | `cartTotals` |
 | Promo | `AUREA10` → 10 % de descuento | `PROMO_CODE` |
 | Cantidad en ficha | 1–20 | `producto.js` |
@@ -128,7 +130,7 @@ Usa `data-i18n` en el HTML y la clave en `I18N.es` **y** `I18N.en`.
 
 ### Cambiar el estilo
 
-Los tokens están en `:root` de `css/styles.css` (`--bg`, `--gold`, `--violet`, `--outline`, tipografías, etc.). La paleta activa es **Coral & Mint**: fondo `#FFFDF5`, coral `#FF6B6B`, menta `#4ECDC4`, texto `#2C3E50` y bordes negros `#111111` (`--outline`).
+Los tokens están en `:root` de `css/styles.css` (`--bg`, `--gold`, `--violet`, `--outline`, tipografías, etc.). La paleta activa es **Coral & Mint**: fondo `#FFFDF5`, coral `#FF6B6B`, menta `#4ECDC4`, texto `#2C3E50` y bordes negros `#111111` (`--outline`). Para texto pequeño se usan variantes con contraste AA: `--muted-strong: #5F6B7A`, `--gold-strong: #C0392B` y `--violet-strong: #1D7874`.
 
 ## Tareas pendientes / límites conocidos
 

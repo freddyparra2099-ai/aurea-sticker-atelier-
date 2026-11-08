@@ -8,7 +8,24 @@ const SHIPPING_COST = 3.95;
 const STICKER_FONTS = {
   elegant: "'Cormorant Garamond', Georgia, 'Times New Roman', serif",
   modern: "'Jost', 'Segoe UI', system-ui, sans-serif",
-  classic: "Georgia, 'Times New Roman', serif"
+  classic: "Georgia, 'Times New Roman', serif",
+  sans: "'Montserrat', Arial, Helvetica, sans-serif",
+  serif: "'Playfair Display', Georgia, 'Times New Roman', serif",
+  script: "'Great Vibes', 'Brush Script MT', cursive",
+  handwriting: "'Caveat', 'Comic Sans MS', cursive",
+  display: "'Bebas Neue', Impact, 'Arial Narrow', sans-serif",
+  rounded: "'Nunito', 'Segoe UI', system-ui, sans-serif",
+  playful: "'Pacifico', 'Comic Sans MS', cursive",
+  vintage: "'Lobster', Georgia, cursive",
+  typewriter: "'Special Elite', 'Courier New', Courier, monospace",
+  condensed: "'Oswald', 'Arial Narrow', sans-serif",
+  romantic: "'Dancing Script', 'Brush Script MT', cursive",
+  tech: "'Orbitron', 'Segoe UI', system-ui, sans-serif",
+  gothic: "'Cinzel', Georgia, 'Times New Roman', serif",
+  casual: "'Patrick Hand', 'Comic Sans MS', cursive",
+  bold: "'Anton', Impact, 'Arial Black', sans-serif",
+  soft: "'Quicksand', 'Segoe UI', system-ui, sans-serif",
+  pixel: "'Press Start 2P', 'Courier New', monospace"
 };
 
 const STICKER_COLORS = {
@@ -40,6 +57,9 @@ function escapeHtml(value) {
 }
 
 function formatSize(size) {
+  if (typeof size === "number" || /^\d+(\.\d+)?$/.test(String(size))) {
+    return `${Number(size)} cm`;
+  }
   return t("product.size" + size);
 }
 
@@ -192,19 +212,6 @@ function toast(message) {
 
 /* ---------------- Vista previa de pegatina ---------------- */
 
-function stickerShape(shape) {
-  if (shape === "square") {
-    return '<rect x="24" y="24" width="252" height="252" rx="46" fill="#f7f1e6" stroke="#e8d8bb" stroke-width="3"/>';
-  }
-  if (shape === "heart") {
-    return '<path d="M150 264C94 224 46 186 46 132c0-35 27-60 60-60 20 0 36 11 44 28 8-17 24-28 44-28 33 0 60 25 60 60 0 54-48 92-104 132z" fill="#f7f1e6" stroke="#e8d8bb" stroke-width="3" stroke-linejoin="round"/>';
-  }
-  if (shape === "star") {
-    return '<path d="M150 14l34.1 89.1 95.2 4.9-74.1 59.9 24.7 92.1L150 208l-79.9 52 24.7-92.1L20.7 108l95.2-4.9z" fill="#f7f1e6" stroke="#e8d8bb" stroke-width="3" stroke-linejoin="round"/>';
-  }
-  return '<circle cx="150" cy="150" r="134" fill="#f7f1e6" stroke="#e8d8bb" stroke-width="3"/>';
-}
-
 function stickerLines(text) {
   const words = String(text || "").trim().split(/\s+/).filter(Boolean);
   const lines = [];
@@ -222,36 +229,54 @@ function stickerLines(text) {
   return lines.slice(0, 3);
 }
 
+let stickerSvgCounter = 0;
+
 function buildStickerSVG(custom) {
   const data = custom || {};
   const hasText = data.text && data.text.trim().length > 0;
   const lines = hasText ? stickerLines(data.text) : [];
   const display = lines.length ? lines : [];
-  const isPlaceholder = display.length === 0 && !data.image;
   const maxLen = display.length ? Math.max(...display.map((line) => line.length), 1) : 1;
   const fontSize = Math.max(16, Math.min(44, 182 / (maxLen * 0.52)));
   const lineHeight = fontSize * 1.12;
-  const startY = 150 - ((display.length - 1) * lineHeight) / 2;
-  const color = isPlaceholder ? "#b6a993" : STICKER_COLORS[data.color] || STICKER_COLORS.gold;
+  const startY = 0 - ((display.length - 1) * lineHeight) / 2;
+  const colorValue = String(data.color || "");
+  const color = /^#[0-9a-f]{6}$/i.test(colorValue)
+    ? colorValue
+    : STICKER_COLORS[data.color] || STICKER_COLORS.gold;
   const font = STICKER_FONTS[data.font] || STICKER_FONTS.elegant;
   const label = hasText ? data.text : (data.image ? t("custom.withImage") : t("custom.name"));
 
+  const imageScale = data.imageScale != null && Number.isFinite(Number(data.imageScale)) ? Number(data.imageScale) : 1;
+  const imageX = data.imageX != null && Number.isFinite(Number(data.imageX)) ? Number(data.imageX) : 0;
+  const imageY = data.imageY != null && Number.isFinite(Number(data.imageY)) ? Number(data.imageY) : 0;
+  const textScale = data.textScale != null && Number.isFinite(Number(data.textScale)) ? Number(data.textScale) : 1;
+  const textX = data.textX != null && Number.isFinite(Number(data.textX)) ? Number(data.textX) : 150;
+  const textY = data.textY != null && Number.isFinite(Number(data.textY)) ? Number(data.textY) : 150;
+
   let bgImage = "";
   if (data.image) {
-    bgImage = `<image href="${escapeHtml(data.image)}" x="0" y="0" width="300" height="300" opacity="0.6" preserveAspectRatio="xMidYMid slice"/>`;
+    bgImage = `<g data-drag="image" transform="translate(${imageX} ${imageY}) scale(${imageScale})"><image href="${escapeHtml(data.image)}" x="-150" y="-150" width="300" height="300" opacity="0.9" preserveAspectRatio="xMidYMid slice"/></g>`;
   }
 
-  const text = display
-    .map((line, index) => {
-      const y = startY + index * lineHeight;
-      return `<text x="150" y="${y.toFixed(1)}" text-anchor="middle" dominant-baseline="middle" font-family="${font}" font-size="${fontSize.toFixed(1)}" font-weight="600" letter-spacing="0.5" fill="${color}">${escapeHtml(line)}</text>`;
-    })
-    .join("");
+  const shadowId = `stickerTextShadow${++stickerSvgCounter}`;
+  const textFilter = display.length ? ` filter="url(#${shadowId})"` : "";
+  const text = display.length
+    ? `<g data-drag="text" transform="translate(${textX} ${textY}) scale(${textScale})">${display
+        .map((line, index) => {
+          const y = startY + index * lineHeight;
+          return `<text x="0" y="${y.toFixed(1)}" text-anchor="middle" dominant-baseline="middle" font-family="${font}" font-size="${fontSize.toFixed(1)}" font-weight="600" letter-spacing="0.5" fill="${color}"${textFilter}>${escapeHtml(line)}</text>`;
+        })
+        .join("")}</g>`
+    : "";
 
-  // Nunca dibujar forma de fondo. Solo imagen y/o texto, sin círculo, corazón ni estrella.
-  const shape = "";
+  if (!bgImage && !text) return "";
 
-  return `<svg class="sticker-svg" viewBox="0 0 300 300" role="img" aria-label="${escapeHtml(label)}">${bgImage}${shape}${text}</svg>`;
+  const defs = display.length
+    ? `<defs><filter id="${shadowId}" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#000000" flood-opacity="0.35"/></filter></defs>`
+    : "";
+
+  return `<svg class="sticker-svg" viewBox="0 0 300 300" role="img" aria-label="${escapeHtml(label)}">${defs}${bgImage}${text}</svg>`;
 }
 
 /* ---------------- Tarjetas de producto ---------------- */

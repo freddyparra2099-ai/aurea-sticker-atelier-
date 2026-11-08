@@ -1,6 +1,15 @@
 /* Catálogo de ÁUREA. Los precios son la base del tamaño M (8 cm). */
 const SIZE_MULT = { S: 0.8, M: 1, L: 1.7 };
-const FINISH_ADD = { matte: 0, gloss: 0.5, holo: 1.5 };
+const FINISH_ADD = {
+  matte: 0,
+  gloss: 0.5,
+  satin: 0.3,
+  holo: 1.5,
+  glitter: 1.2,
+  metallic: 1,
+  neon: 0.8,
+  transparent: 0.2
+};
 
 const PRODUCTS = [
   {
@@ -162,7 +171,10 @@ function productById(id) {
 }
 
 function priceFor(base, size, finish) {
-  const mult = SIZE_MULT[size] || 1;
+  const numericSize = Number(size);
+  const mult = Number.isFinite(numericSize) && numericSize > 0
+    ? Math.max(0.5, Math.pow(numericSize / 8, 1.15))
+    : SIZE_MULT[size] || 1;
   const add = FINISH_ADD[finish] || 0;
   return Math.round((base * mult + add) * 100) / 100;
 }

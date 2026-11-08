@@ -37,12 +37,12 @@ Referencia de las funciones y constantes que ya existen en `js/`. Todas están e
 
 | Elemento | Detalle |
 | --- | --- |
-| `PRODUCTS` | Array de 9 productos. Campos: `id`, `cat`, `price`, `accent`, `img`, `badge`, `rating`, `reviews`, `name {es,en}`, `desc {es,en}`. |
-| `CATEGORY_KEYS` | `["all", "celestial", "botanical", "abstract", "retro", "typography"]`. |
-| `SIZE_MULT` | Multiplicador por tamaño: `S: 0.8`, `M: 1`, `L: 1.7`. |
-| `FINISH_ADD` | Suplemento por acabado: `matte: 0`, `gloss: 0.5`, `holo: 1.5` (€). |
+| `PRODUCTS` | Array de 10 productos. Campos: `id`, `cat`, `price`, `accent`, `img`, `badge`, `rating`, `reviews`, `name {es,en}`, `desc {es,en}`. |
+| `CATEGORY_KEYS` | `["all", "celestial", "botanical", "abstract", "retro", "typography", "minimal"]`. |
+| `SIZE_MULT` | Multiplicador de los tamaños de catálogo: `S: 0.8`, `M: 1`, `L: 1.7`. |
+| `FINISH_ADD` | Suplemento por acabado: `matte: 0`, `gloss: 0.5`, `satin: 0.3`, `holo: 1.5`, `glitter: 1.2`, `metallic: 1`, `neon: 0.8`, `transparent: 0.2` (USD). |
 | `productById(id)` | Devuelve el producto o `null`. |
-| `priceFor(base, size, finish)` | `round2(base * SIZE_MULT[size] + FINISH_ADD[finish])`. |
+| `priceFor(base, size, finish)` | Para tamaños numéricos usa `max(0.5, (size / 8) ^ 1.15)`; para `S/M/L` usa `SIZE_MULT`. Suma `FINISH_ADD` y redondea a 2 decimales. |
 
 **Productos disponibles**
 
@@ -67,20 +67,20 @@ Referencia de las funciones y constantes que ya existen en `js/`. Todas están e
 | Constante | Valor | Uso |
 | --- | --- | --- |
 | `CART_KEY` | `"aurea_cart"` | Clave del carrito en `localStorage`. |
-| `FREE_SHIPPING` | `25` | Umbral de envío gratis (€). |
-| `SHIPPING_COST` | `3.95` | Coste de envío (€). |
-| `STICKER_FONTS` | `elegant`, `modern`, `classic` | Familias tipográficas del personalizador. |
-| `STICKER_COLORS` | `gold`, `ink`, `violet`, `rose`, `mint` | Colores del personalizador (hex). |
+| `FREE_SHIPPING` | `5` | Umbral de envío gratis (USD). |
+| `SHIPPING_COST` | `3.95` | Coste de envío (USD). |
+| `STICKER_FONTS` | 20 claves (`elegant`, `modern`, `classic`, `sans`, `serif`, `script`, `handwriting`, `display`, `rounded`, `playful`, `vintage`, `typewriter`, `condensed`, `romantic`, `tech`, `gothic`, `casual`, `bold`, `soft`, `pixel`) | Familias tipográficas del personalizador. |
+| `STICKER_COLORS` | `gold`, `ink`, `violet`, `rose`, `mint` | Compatibilidad con carritos antiguos; los colores nuevos se guardan como hex (`#RRGGBB`). |
 
 ### Formato y utilidades
 
 | Firma | Qué hace |
 | --- | --- |
-| `money(value) → string` | Formatea en EUR según el idioma (`es-ES` / `en-GB`). |
+| `money(value) → string` | Formatea en USD según el idioma (`es-US` / `en-US`). |
 | `round2(value) → number` | Redondea a dos decimales. |
 | `escapeHtml(value) → string` | Escapa `& < > " '` antes de insertar HTML. |
-| `formatSize(size) → string` | Traduce el tamaño (`product.sizeS/M/L`). |
-| `formatFinish(finish) → string` | Traduce el acabado (`product.matte/gloss/holo`). |
+| `formatSize(size) → string` | Si es numérico devuelve `"N cm"`; si es `S/M/L` traduce `product.sizeS/M/L`. |
+| `formatFinish(finish) → string` | Traduce cualquiera de los 8 acabados (`product.matte/gloss/satin/holo/glitter/metallic/neon/transparent`). |
 | `toast(message) → void` | Aviso flotante de 2,4 s con `role="status"`. |
 
 ### Carrito
@@ -106,13 +106,19 @@ Referencia de las funciones y constantes que ya existen en `js/`. Todas están e
 
 ```js
 {
-  key: "p:luna:M:matte",        // o "c:<texto>:<font>:<shape>:<color>:<size>:<finish>"
+  key: "p:luna:M:matte",
+  // personalizado:
+  // "c:<texto>:<imageId>:<font>:<color>:<size>:<finish>:<imageX>:<imageY>:<imageScale>:<textX>:<textY>:<textScale>"
   type: "product" | "custom",
   id: "luna",                    // solo productos
   qty: 1,
   unitPrice: 6.5,
   options: { size: "M", finish: "matte" },
-  custom: { text, font, shape, color } // solo personalizados
+  custom: {
+    text, font, color, image,
+    imageScale, imageX, imageY,
+    textScale, textX, textY
+  } // solo personalizados
 }
 ```
 
@@ -120,9 +126,8 @@ Referencia de las funciones y constantes que ya existen en `js/`. Todas están e
 
 | Firma | Qué hace |
 | --- | --- |
-| `stickerShape(shape) → string` | Devuelve el SVG de la forma: `circle` (defecto), `square`, `heart`, `star`. |
 | `stickerLines(text) → string[]` | Parte el texto en líneas de ≤ 11 caracteres, máx. 3. |
-| `buildStickerSVG(custom) → string` | Genera el SVG 300×300 con forma, color, tipografía y texto; ajusta el tamaño de letra entre 16 y 44 px. Usa texto de relleno si está vacío. |
+| `buildStickerSVG(custom) → string` | Genera el SVG 300×300 sin forma de fondo. Aplica imagen (`imageScale`, `imageX`, `imageY`), texto (`textScale`, `textX`, `textY`), tipografía, color hex o clave antigua y sombra de texto. Ajusta la letra entre 16 y 44 px. |
 
 ### Tarjetas y cabecera
 
@@ -174,12 +179,16 @@ Eventos: `DOMContentLoaded` (render + init) y `langchange` (vuelve a pintar).
 
 | Elemento | Detalle |
 | --- | --- |
-| `CUSTOM_BASE_PRICE` | `7.5` € (precio base del personalizado en M). |
-| `customState` | `{ text: "BONITA", font: "elegant", shape: "heart", color: "gold", size: "M", finish: "matte" }`. |
-| `renderCustom()` | Regenera `#stickerPreview`, actualiza `#customPrice` y marca botones activos con `aria-pressed`. |
-| `initCustomizer()` | Conecta texto, ideas rápidas, tipografía, forma, color, tamaño, acabado y `#customAdd`. |
+| `CUSTOM_BASE_PRICE` | `7.5` USD (precio base del personalizado a 8 cm). |
+| `MAX_IMAGE_BYTES` | `5 * 1024 * 1024` (5 MB). |
+| `MAX_IMAGE_SIDE` | `1200` px; la foto se reduce antes de guardarse para no agotar `localStorage`. |
+| `customState` | `{ text, font: "elegant", color: "#a8793f", size: 8, finish: "matte", image: null, imageId: null, imageScale: 1, imageX: 0, imageY: 0, textScale: 1, textX: 150, textY: 150 }`. |
+| `readImageFile(file, callback)` | Lee la foto, la reduce a 1200 px como máximo y la convierte a data URL (PNG para PNG/WebP, JPEG para el resto). |
+| `renderCustom()` | Regenera `#stickerPreview`, actualiza precio, miniaturas, sliders y botones activos con `aria-pressed`. |
+| `applyPreviewTransforms()` | Aplica en vivo `imageX/Y`, `imageScale`, `textX/Y`, `textScale` sin volver a crear el SVG. |
+| `initCustomizer()` | Conecta texto, foto, 20 tipografías, 28 muestras + selector de color, tamaño 5–90 cm, 8 acabados, zoom de foto/texto, arrastre, botón «Restablecer» y `#customAdd`. |
 
-Opciones: 3 tipografías, 4 formas, 5 colores, 3 tamaños y 3 acabados.
+La vista previa no gira. La foto y el texto se pueden arrastrar por separado; el texto se puede escalar entre 50 % y 250 % y la foto entre 50 % y 300 %. El tamaño del personalizado va de 5 a 90 cm y el precio se recalcula con `priceFor`.
 
 ---
 

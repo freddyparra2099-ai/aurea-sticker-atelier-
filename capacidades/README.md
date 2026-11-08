@@ -2,7 +2,7 @@
 
 Esta carpeta reúne, en un solo lugar, **qué se puede hacer** en este proyecto: por un lado las capacidades del agente que lo mantiene y, por otro, las funciones que ya existen en el código de **ÁUREA · Sticker Atelier**.
 
-> Documento vivo. Actualizado por última vez: 30/10/2026.
+> Documento vivo. Actualizado por última vez: 06/11/2026.
 
 ## Contenido
 
@@ -22,7 +22,7 @@ Esta carpeta reúne, en un solo lugar, **qué se puede hacer** en este proyecto:
 
 - Las rutas son relativas a la raíz del proyecto (`Proyecto predeterminado/`).
 - Los nombres de funciones coinciden **exactamente** con el código; si renombras una, actualiza esta carpeta.
-- Los precios están en euros (EUR) y las reglas se toman de `js/data.js` y `js/app.js`.
+- Los precios están en dólares (USD) y las reglas se toman de `js/data.js` y `js/app.js`.
 - No se incluyen credenciales, rutas personales ni datos sensibles.
 
 ## Mantenimiento rápido
