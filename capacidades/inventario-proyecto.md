@@ -26,7 +26,7 @@ Resumen funcional de la web: qué hay, cómo se conecta y qué falta. Complement
 ## Secciones de la portada
 
 - **Hero** animado (respeta `prefers-reduced-motion`).
-- **Tienda** (`#tienda`): 10 productos, 6 categorías, buscador, orden por precio y estado vacío.
+- **Tienda** (`#tienda`): 10 productos, 13 categorías (colección: personalizados, frases y acabados especiales, humor y memes, cultura pop, videojuegos; estética visual: minimalistas, estilo cómic, ciberpunk, Lo-Fi, gótico, kawaii, 80s y 90s, 2000), buscador, orden por precio y estado vacío.
 - **Personaliza** (`#personaliza`): teaser con vista previa.
 - **Opiniones** (`#opiniones`).
 - **FAQ** (`#faq`).

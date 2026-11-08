@@ -38,7 +38,7 @@ Referencia de las funciones y constantes que ya existen en `js/`. Todas están e
 | Elemento | Detalle |
 | --- | --- |
 | `PRODUCTS` | Array de 10 productos. Campos: `id`, `cat`, `price`, `accent`, `img`, `badge`, `rating`, `reviews`, `name {es,en}`, `desc {es,en}`. |
-| `CATEGORY_KEYS` | `["all", "celestial", "botanical", "abstract", "retro", "typography", "minimal"]`. |
+| `CATEGORY_KEYS` | `["all", "personalized", "phrases", "humor", "pop-culture", "video-games", "minimalist", "comic", "cyberpunk", "lo-fi", "gothic", "kawaii", "80s-90s", "2000s"]`. |
 | `SIZE_MULT` | Multiplicador de los tamaños de catálogo: `S: 0.8`, `M: 1`, `L: 1.7`. |
 | `FINISH_ADD` | Suplemento por acabado: `matte: 0`, `gloss: 0.5`, `satin: 0.3`, `holo: 1.5`, `glitter: 1.2`, `metallic: 1`, `neon: 0.8`, `transparent: 0.2` (USD). |
 | `productById(id)` | Devuelve el producto o `null`. |
@@ -48,15 +48,16 @@ Referencia de las funciones y constantes que ya existen en `js/`. Todas están e
 
 | `id` | Categoría | Precio base (M) |
 | --- | --- | --- |
-| `luna` | celestial | 6,50 € |
-| `ojo` | celestial | 6,90 € |
-| `rosa` | botanical | 5,90 € |
-| `mariposa` | botanical | 6,50 € |
-| `aurora` | abstract | 7,50 € |
-| `onda` | abstract | 6,20 € |
-| `corazon` | retro | 5,50 € |
-| `seta` | retro | 5,90 € |
-| `tipografia` | typography | 4,90 € |
+| `luna` | pop-culture | 6,50 € |
+| `ojo` | humor | 6,90 € |
+| `rosa` | phrases | 5,90 € |
+| `mariposa` | pop-culture | 6,50 € |
+| `aurora` | pop-culture | 7,50 € |
+| `onda` | pop-culture | 6,20 € |
+| `corazon` | phrases | 5,50 € |
+| `seta` | humor | 5,90 € |
+| `tipografia` | phrases | 4,90 € |
+| `linea` | personalized | 5,50 € |
 
 ---
 

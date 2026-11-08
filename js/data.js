@@ -14,7 +14,7 @@ const FINISH_ADD = {
 const PRODUCTS = [
   {
     id: "luna",
-    cat: "celestial",
+    cat: "pop-culture",
     price: 6.5,
     accent: "#8b7bff",
     img: "assets/stickers/luna.svg",
@@ -29,7 +29,7 @@ const PRODUCTS = [
   },
   {
     id: "ojo",
-    cat: "celestial",
+    cat: "humor",
     price: 6.9,
     accent: "#e3bd7d",
     img: "assets/stickers/ojo.svg",
@@ -44,7 +44,7 @@ const PRODUCTS = [
   },
   {
     id: "rosa",
-    cat: "botanical",
+    cat: "phrases",
     price: 5.9,
     accent: "#c98b9a",
     img: "assets/stickers/rosa.svg",
@@ -59,7 +59,7 @@ const PRODUCTS = [
   },
   {
     id: "mariposa",
-    cat: "botanical",
+    cat: "pop-culture",
     price: 6.5,
     accent: "#e3bd7d",
     img: "assets/stickers/mariposa.svg",
@@ -74,7 +74,7 @@ const PRODUCTS = [
   },
   {
     id: "aurora",
-    cat: "abstract",
+    cat: "pop-culture",
     price: 7.5,
     accent: "#8b7bff",
     img: "assets/stickers/aurora.svg",
@@ -89,7 +89,7 @@ const PRODUCTS = [
   },
   {
     id: "onda",
-    cat: "abstract",
+    cat: "pop-culture",
     price: 6.2,
     accent: "#7fc2ad",
     img: "assets/stickers/onda.svg",
@@ -104,7 +104,7 @@ const PRODUCTS = [
   },
   {
     id: "corazon",
-    cat: "retro",
+    cat: "phrases",
     price: 5.5,
     accent: "#c98b9a",
     img: "assets/stickers/corazon.svg",
@@ -119,7 +119,7 @@ const PRODUCTS = [
   },
   {
     id: "seta",
-    cat: "retro",
+    cat: "humor",
     price: 5.9,
     accent: "#d98b6a",
     img: "assets/stickers/seta.svg",
@@ -134,7 +134,7 @@ const PRODUCTS = [
   },
   {
     id: "tipografia",
-    cat: "typography",
+    cat: "phrases",
     price: 4.9,
     accent: "#e3bd7d",
     img: "assets/stickers/tipografia.svg",
@@ -149,7 +149,7 @@ const PRODUCTS = [
   },
   {
     id: "linea",
-    cat: "minimal",
+    cat: "personalized",
     price: 5.5,
     accent: "#c69a58",
     img: "assets/stickers/linea.svg",
@@ -164,7 +164,7 @@ const PRODUCTS = [
   }
 ];
 
-const CATEGORY_KEYS = ["all", "celestial", "botanical", "abstract", "retro", "typography", "minimal"];
+const CATEGORY_KEYS = ["all", "personalized", "phrases", "humor", "pop-culture", "video-games", "minimalist", "comic", "cyberpunk", "lo-fi", "gothic", "kawaii", "80s-90s", "2000s"];
 
 function productById(id) {
   return PRODUCTS.find((p) => p.id === id) || null;
