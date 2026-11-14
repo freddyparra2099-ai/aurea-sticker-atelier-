@@ -240,7 +240,7 @@ const I18N = {
     "product.includes": "Incluye",
     "product.includesText": "1 pegatina troquelada + tarjeta de cuidado + sobre de regalo.",
     "product.viewContext": "Ver en contexto",
-    "product.viewFlat": "Ver sticker plano"
+    "product.viewFlat": "Ver sticker plano",
 
     "custom.kicker": "Personalizador",
     "custom.title": "Crea tu pegatina",
@@ -614,7 +614,7 @@ const I18N = {
     "product.includes": "Includes",
     "product.includesText": "1 die-cut sticker + care card + gift envelope.",
     "product.viewContext": "View in context",
-    "product.viewFlat": "View flat sticker"
+    "product.viewFlat": "View flat sticker",
 
     "custom.kicker": "Customizer",
     "custom.title": "Create your sticker",
