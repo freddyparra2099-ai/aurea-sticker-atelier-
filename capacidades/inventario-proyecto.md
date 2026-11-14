@@ -28,7 +28,8 @@ Resumen funcional de la web: qué hay, cómo se conecta y qué falta. Complement
 - **Hero** animado (respeta `prefers-reduced-motion`).
 - **Tienda** (`#tienda`): 10 productos, 13 categorías (colección: personalizados, frases y acabados especiales, humor y memes, cultura pop, videojuegos; estética visual: minimalistas, estilo cómic, ciberpunk, Lo-Fi, gótico, kawaii, 80s y 90s, 2000), buscador, orden por precio y estado vacío.
 - **Personaliza** (`#personaliza`): teaser con vista previa.
-- **Opiniones** (`#opiniones`).
+- **Opiniones** (`#opiniones`): formulario para dejar opinión con nombre, correo, valoración de estrellas (1–5), texto y foto opcional del producto colocado. Las reseñas con foto se muestran también en la galería «Fotos de la comunidad» (prueba social). Guarda en `aurea_reviews`.
+- **Newsletter**: validación de email y aviso, sin envío real.
 - **FAQ** (`#faq`).
 - **Newsletter**: validación de email y aviso, sin envío real.
 
@@ -92,7 +93,8 @@ No hay cookies, analítica ni envío de datos a servidores.
   cat: "celestial",          // celestial | botanical | abstract | retro | typography
   price: 6.5,                // base en tamaño M
   accent: "#8b7bff",         // color del resplandor de la tarjeta
-  img: "assets/stickers/luna.svg",
+  img: "assets/stickers/luna.svg",           // sticker aislado (SVG)
+  contextImg: "assets/context/luna-laptop.jpg", // foto de uso real (laptop, libreta, funda)
   badge: "top",              // "new" | "top" | null
   rating: 4.9,
   reviews: 214,
@@ -130,7 +132,30 @@ Usa `data-i18n` en el HTML y la clave en `I18N.es` **y** `I18N.en`.
 
 ### Cambiar el estilo
 
-Los tokens están en `:root` de `css/styles.css` (`--bg`, `--gold`, `--violet`, `--outline`, tipografías, etc.). La paleta activa es **Coral & Mint**: fondo `#FFFDF5`, coral `#FF6B6B`, menta `#4ECDC4`, texto `#2C3E50` y bordes negros `#111111` (`--outline`). Para texto pequeño se usan variantes con contraste AA: `--muted-strong: #5F6B7A`, `--gold-strong: #C0392B` y `--violet-strong: #1D7874`.
+Los tokens están en `:root` de `css/styles.css` (`--bg`, `--gold`, `--violet`, `--outline`, tipografías, etc.). La paleta activa es **Coral & Mint**: fondo `#FFFDF5`, coral `#FF6B6B`, menta `#4ECDC4`, texto `#2C3E50` y bordes negros `#111111` (`--outline`).
+
+**Tokens de texto (contraste sobre fondo crema `#FFFDF5`):**
+
+| Token | Valor | Contraste | Uso | WCAG |
+|---|---|---|---|---|
+| `--ink` | `#2C3E50` | ≈ 11:1 | Texto principal, precios, datos críticos | ✅ AAA |
+| `--muted` / `--muted-2` | `#5A6B78` | ≈ 5.27:1 | Texto secundario, subtítulos, etiquetas | ✅ AA |
+| `--muted-strong` | `#4A5A68` | ≈ 6.70:1 | Etiquetas de formulario, texto pequeño | ✅ AAA |
+| `--gold-strong` | `#C0392B` | ≈ 5.09:1 | Enlaces, acentos de texto, estados | ✅ AAA |
+| `--gold` | `#FF6B6B` | ≈ 2.70:1 | Solo decorativo (botones, fondos, iconos) | ❌ No como texto |
+| `--violet/rose/mint` | `#4ECDC4` | ≈ 1.82:1 | Solo decorativo | ❌ No como texto |
+
+**Regla:** nunca usar `--gold` o `--violet/rose/mint` como color de texto sobre el fondo crema; no alcanzan el mínimo 3:1 (texto grande) ni 4.5:1 (texto normal). Usar `--ink`, `--muted`, `--muted-strong` o `--gold-strong` según la jerarquía visual.
+
+Todos los pesos `font-weight: 300` en texto corporal se cambiaron a `400` para mejorar legibilidad sin perder la elegancia minimalista.
+
+### Previsualización en contexto
+
+Cada producto puede tener una foto de uso real en `contextImg` (ej. sticker pegado en una laptop, libreta o funda de celular). En la tarjeta de la cuadrícula (`index.html`), al pasar el cursor (hover) la imagen cambia del sticker plano a la foto de contexto con una transición suave. En la vista de detalle (`producto.html`), un botón "Ver en contexto" (`galleryToggle`) alterna entre ambas vistas con `aria-pressed` para accesibilidad.
+
+Las fotos de contexto van en `assets/context/` con nombres descriptivos (ej. `luna-laptop.jpg`, `rosa-notebook.jpg`).
+
+
 
 ## Tareas pendientes / límites conocidos
 

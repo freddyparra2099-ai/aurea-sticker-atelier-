@@ -74,9 +74,13 @@
 
       <div class="product-layout">
         <div class="gallery" id="gallery">
-          <span class="card-badge" id="productBadge" hidden></span>
-          <img id="productImg" src="assets/stickers/luna.svg" alt="Luna Creciente">
-          <span class="gallery-note" data-i18n="brand.tag"></span>
+          <div class="gallery-media" id="galleryMedia">
+            <span class="card-badge" id="productBadge" hidden></span>
+            <img id="productImg" src="assets/stickers/luna.svg" alt="Luna Creciente" loading="lazy">
+            <img id="productImgContext" src="" alt="Luna Creciente en contexto" class="context" loading="lazy">
+            <button class="gallery-toggle" id="galleryToggle" type="button" aria-pressed="false" data-i18n-aria="product.viewContext">Ver en contexto</button>
+            <span class="gallery-note" data-i18n="brand.tag"></span>
+          </div>
         </div>
 
         <div class="product-info">

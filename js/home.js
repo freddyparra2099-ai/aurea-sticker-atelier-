@@ -23,6 +23,41 @@ function visibleProducts() {
   return list;
 }
 
+function readImageFile(file, callback) {
+  const maxBytes = 2 * 1024 * 1024;
+  if (file.size > maxBytes) {
+    callback(new Error("La foto no puede superar 2 MB."));
+    return;
+  }
+  const reader = new FileReader();
+  reader.onload = (event) => {
+    const img = new Image();
+    img.onload = () => {
+      const canvas = document.createElement("canvas");
+      const maxSide = 1000;
+      let width = img.width;
+      let height = img.height;
+      if (width > maxSide || height > maxSide) {
+        if (width > height) {
+          height = Math.round((height * maxSide) / width);
+          width = maxSide;
+        } else {
+          width = Math.round((width * maxSide) / height);
+          height = maxSide;
+        }
+      }
+      canvas.width = width;
+      canvas.height = height;
+      const ctx = canvas.getContext("2d");
+      ctx.drawImage(img, 0, 0, width, height);
+      callback(null, canvas.toDataURL("image/jpeg", 0.85));
+    };
+    img.src = event.target.result;
+  };
+  reader.onerror = () => callback(new Error("No se pudo leer la imagen."));
+  reader.readAsDataURL(file);
+}
+
 function renderShop() {
   const grid = document.getElementById("productGrid");
   const empty = document.getElementById("emptyState");
@@ -127,8 +162,13 @@ function renderReviews() {
 
   list.innerHTML = reviews.map((r) => {
     const stars = "★".repeat(r.rating) + "☆".repeat(5 - r.rating);
+    const photo = r.photo
+      ? `<img class="review-photo" src="${escapeHtml(r.photo)}" alt="Foto del sticker colocado por ${escapeHtml(r.name)}" loading="lazy">`
+      : "";
+    const reviewClass = r.photo ? "review review-with-photo" : "review";
     return `
-      <article class="review">
+      <article class="${reviewClass}">
+        ${photo}
         <div class="stars" role="img" aria-label="${r.rating}/5">${stars}</div>
         <p class="review-quote">${escapeHtml(r.message)}</p>
         <div class="review-author">
@@ -137,6 +177,35 @@ function renderReviews() {
             <strong>${escapeHtml(r.name)}</strong>
             <span>${escapeHtml(r.email)}</span>
           </div>
+        </div>
+      </article>
+    `;
+  }).join("");
+}
+
+function renderCommunity() {
+  const grid = document.getElementById("communityGrid");
+  const wall = document.getElementById("communityWall");
+  if (!grid || !wall) return;
+
+  const reviews = getReviews();
+  const withPhoto = reviews.filter((r) => r.photo);
+  if (withPhoto.length === 0) {
+    wall.hidden = true;
+    return;
+  }
+
+  wall.hidden = false;
+  grid.innerHTML = withPhoto.map((r) => {
+    const stars = "★".repeat(r.rating) + "☆".repeat(5 - r.rating);
+    return `
+      <article class="community-photo">
+        <span class="photo-badge" data-i18n="reviews.verified"></span>
+        <img src="${escapeHtml(r.photo)}" alt="Sticker de ${escapeHtml(r.name)} colocado" loading="lazy">
+        <div class="photo-stars" role="img" aria-label="${r.rating}/5">${stars}</div>
+        <div class="photo-author">
+          ${escapeHtml(r.name)}
+          <span>· ${escapeHtml(r.email.split("@")[0])}</span>
         </div>
       </article>
     `;
@@ -223,6 +292,41 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const form = document.getElementById("reviewForm");
   const status = document.getElementById("reviewStatus");
+  const photoInput = document.getElementById("reviewPhoto");
+  const photoPreview = document.getElementById("reviewPhotoPreview");
+  const photoImg = document.getElementById("reviewPhotoImg");
+  let pendingPhoto = null;
+
+  if (photoInput && photoPreview && photoImg) {
+    photoInput.addEventListener("change", (event) => {
+      const file = event.target.files[0];
+      if (!file) return;
+      readImageFile(file, (err, dataUrl) => {
+        if (err) {
+          status.textContent = err.message;
+          status.hidden = false;
+          status.className = "form-status is-error";
+          setTimeout(() => { status.hidden = true; }, 4000);
+          photoInput.value = "";
+          return;
+        }
+        pendingPhoto = dataUrl;
+        photoImg.src = dataUrl;
+        photoPreview.hidden = false;
+      });
+    });
+  }
+
+  const photoRemove = form ? form.querySelector(".photo-remove") : null;
+  if (photoRemove) {
+    photoRemove.addEventListener("click", () => {
+      pendingPhoto = null;
+      if (photoInput) photoInput.value = "";
+      if (photoPreview) photoPreview.hidden = true;
+      if (photoImg) photoImg.src = "";
+    });
+  }
+
   if (form) {
     form.addEventListener("submit", (event) => {
       event.preventDefault();
@@ -232,11 +336,16 @@ document.addEventListener("DOMContentLoaded", () => {
         email: formData.get("email").trim(),
         rating: Number(formData.get("rating")),
         message: formData.get("message").trim(),
+        photo: pendingPhoto || null,
         date: new Date().toISOString()
       };
       if (!review.name || !review.email || !review.message) return;
       saveReview(review);
+      renderCommunity();
       form.reset();
+      pendingPhoto = null;
+      if (photoPreview) photoPreview.hidden = true;
+      if (photoImg) photoImg.src = "";
       status.textContent = t("reviews.form.success");
       status.hidden = false;
       status.className = "form-status is-ok";
@@ -249,4 +358,5 @@ document.addEventListener("langchange", () => {
   renderShop();
   renderTeaser();
   renderReviews();
+  renderCommunity();
 });

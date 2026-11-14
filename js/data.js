@@ -22,6 +22,7 @@ const PRODUCTS = [
     rating: 4.9,
     reviews: 214,
     name: { es: "Luna Creciente", en: "Crescent Moon" },
+    contextImg: "assets/context/luna-laptop.jpg",
     desc: {
       es: "Una luna dorada para las que brillan de noche. Acabado de tinta metálica sobre fondo tinta.",
       en: "A golden moon for those who shine at night. Metallic ink finish on an ink-black ground."
@@ -37,6 +38,7 @@ const PRODUCTS = [
     rating: 4.8,
     reviews: 96,
     name: { es: "Ojo Protector", en: "Guardian Eye" },
+    contextImg: "assets/context/ojo-notebook.jpg",
     desc: {
       es: "El amuleto de siempre, dibujado con líneas finas y un iris de oro. Para llevar suerte encima.",
       en: "The classic amulet, drawn with fine lines and a gold iris. Keep a little luck with you."
@@ -52,6 +54,7 @@ const PRODUCTS = [
     rating: 4.9,
     reviews: 158,
     name: { es: "Rosa Eterna", en: "Eternal Rose" },
+    contextImg: "assets/context/rosa-notebook.jpg",
     desc: {
       es: "Una rosa de una sola línea, serena y atemporal. Queda preciosa en libretas y portátiles.",
       en: "A single-line rose, calm and timeless. Looks beautiful on notebooks and laptops."
@@ -67,6 +70,7 @@ const PRODUCTS = [
     rating: 5.0,
     reviews: 302,
     name: { es: "Mariposa Áurea", en: "Golden Butterfly" },
+    contextImg: "assets/context/mariposa-laptop.jpg",
     desc: {
       es: "Alas simétricas en oro y violeta. Nuestra ilustración más vendida, y con razón.",
       en: "Symmetrical wings in gold and violet. Our best-selling illustration, and for good reason."
@@ -82,6 +86,7 @@ const PRODUCTS = [
     rating: 4.7,
     reviews: 74,
     name: { es: "Aurora", en: "Aurora" },
+    contextImg: "assets/context/aurora-laptop.jpg",
     desc: {
       es: "Arcos concéntricos que parecen moverse. Geometría suave para superficies grandes.",
       en: "Concentric arcs that seem to move. Soft geometry for larger surfaces."
@@ -97,6 +102,7 @@ const PRODUCTS = [
     rating: 4.8,
     reviews: 121,
     name: { es: "Marea", en: "Tide" },
+    contextImg: "assets/context/onda-notebook.jpg",
     desc: {
       es: "Ondas tranquilas y una esfera de luz. Como mirar el mar desde la orilla.",
       en: "Quiet waves and a sphere of light. Like watching the sea from the shore."
@@ -112,6 +118,7 @@ const PRODUCTS = [
     rating: 4.6,
     reviews: 63,
     name: { es: "Corazón Cuadros", en: "Checkered Heart" },
+    contextImg: "assets/context/corazon-notebook.jpg",
     desc: {
       es: "Un clásico de los noventa con acabado limpio. Amor en blanco y negro.",
       en: "A nineties classic with a clean finish. Love in black and white."
@@ -127,6 +134,7 @@ const PRODUCTS = [
     rating: 4.9,
     reviews: 187,
     name: { es: "Seta Soñadora", en: "Dreamy Mushroom" },
+    contextImg: "assets/context/seta-laptop.jpg",
     desc: {
       es: "Una seta de cuento con sombrero rosa polvo. Pequeña, tierna y muy ponible.",
       en: "A storybook mushroom with a dusty rose cap. Small, sweet and very wearable."
@@ -142,6 +150,7 @@ const PRODUCTS = [
     rating: 4.8,
     reviews: 145,
     name: { es: "Stay Wild", en: "Stay Wild" },
+    contextImg: "assets/context/tipografia-notebook.jpg",
     desc: {
       es: "Letras serif y una estrella diminuta. Un recordatorio para no pedir permiso.",
       en: "Serif letters and a tiny star. A reminder not to ask for permission."
@@ -157,6 +166,7 @@ const PRODUCTS = [
     rating: 4.9,
     reviews: 89,
     name: { es: "Línea Áurea", en: "Golden Line" },
+    contextImg: "assets/context/linea-laptop.jpg",
     desc: {
       es: "Geometría minimal en dorado y violeta. Menos es más, y esto lo es todo.",
       en: "Minimal geometry in gold and violet. Less is more, and this is everything."

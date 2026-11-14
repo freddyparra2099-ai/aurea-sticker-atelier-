@@ -35,6 +35,22 @@ function renderProduct() {
     img.alt = name;
   }
 
+  const imgContext = document.getElementById("productImgContext");
+  if (imgContext) {
+    imgContext.src = product.contextImg || product.img;
+    imgContext.alt = `${name} en contexto`;
+  }
+
+  const galleryToggle = document.getElementById("galleryToggle");
+  const galleryMedia = document.getElementById("galleryMedia");
+  if (galleryToggle && galleryMedia) {
+    galleryMedia.classList.remove("is-context");
+    galleryToggle.setAttribute("aria-pressed", "false");
+    galleryToggle.textContent = document.documentElement.lang === "es"
+      ? t("product.viewContext")
+      : t("product.viewContext");
+  }
+
   const badge = document.getElementById("productBadge");
   if (badge) {
     if (product.badge) {
@@ -157,6 +173,22 @@ function initProduct() {
         unitPrice: priceFor(product.price, "M", "matte"),
         options: { size: "M", finish: "matte" }
       });
+    });
+  }
+
+  const galleryToggle = document.getElementById("galleryToggle");
+  const galleryMedia = document.getElementById("galleryMedia");
+  if (galleryToggle && galleryMedia) {
+    galleryToggle.addEventListener("click", () => {
+      const isContext = galleryMedia.classList.toggle("is-context");
+      galleryToggle.setAttribute("aria-pressed", String(isContext));
+      galleryToggle.textContent = isContext
+        ? document.documentElement.lang === "es"
+          ? t("product.viewFlat")
+          : t("product.viewFlat")
+        : document.documentElement.lang === "es"
+          ? t("product.viewContext")
+          : t("product.viewContext");
     });
   }
 }

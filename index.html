@@ -201,8 +201,20 @@
         <div class="section-head center">
           <p class="eyebrow" data-i18n="reviews.kicker"></p>
           <h2 class="h2" data-i18n="reviews.heading"></h2>
-          <p class="section-lead" data-i18n="reviews.empty"></p>
+          <p class="section-lead" data-i18n="reviews.lead"></p>
         </div>
+
+        <!-- Galería de fotos de la comunidad -->
+        <div class="community-wall" id="communityWall" hidden>
+          <div class="section-head center" style="margin-bottom: 30px">
+            <p class="eyebrow" data-i18n="reviews.community.kicker"></p>
+            <h3 data-i18n="reviews.community.title" style="margin:0;font-size:clamp(1.5rem,3vw,2rem);font-weight:600;line-height:1.2"></h3>
+            <p class="section-lead" data-i18n="reviews.community.lead"></p>
+          </div>
+          <div class="community-grid" id="communityGrid"></div>
+        </div>
+
+        <!-- Reseñas de texto -->
         <div class="reviews-grid" id="reviewsList"></div>
 
         <form class="review-form" id="reviewForm" novalidate>
@@ -218,18 +230,30 @@
             </label>
           </div>
           <label class="field">
-            <span class="field-label" data-i18n="reviews.form.rating"></span>
-            <select name="rating" required>
-              <option value="5">5 ★</option>
-              <option value="4">4 ★</option>
-              <option value="3">3 ★</option>
-              <option value="2">2 ★</option>
-              <option value="1">1 ★</option>
-            </select>
+            <span class="field-label" data-i18n="reviews.ratingLabel"></span>
+            <div class="rating-stars" role="radiogroup" aria-label="Valoración" tabindex="0">
+              <input type="radio" name="rating" value="5" id="star5" required><label for="star5" aria-label="5 estrellas">★</label>
+              <input type="radio" name="rating" value="4" id="star4"><label for="star4" aria-label="4 estrellas">★</label>
+              <input type="radio" name="rating" value="3" id="star3"><label for="star3" aria-label="3 estrellas">★</label>
+              <input type="radio" name="rating" value="2" id="star2"><label for="star2" aria-label="2 estrellas">★</label>
+              <input type="radio" name="rating" value="1" id="star1"><label for="star1" aria-label="1 estrella">★</label>
+            </div>
+            <span class="rating-hint" data-i18n="reviews.form.rating"></span>
           </label>
           <label class="field full">
             <span class="field-label" data-i18n="reviews.form.message"></span>
             <textarea name="message" rows="4" required></textarea>
+          </label>
+          <label class="field full">
+            <span class="field-label" data-i18n="reviews.form.photo"></span>
+            <div class="photo-upload">
+              <input type="file" name="photo" id="reviewPhoto" accept="image/jpeg,image/png,image/webp" aria-label="Subir foto de tu sticker colocado">
+              <div class="photo-preview" id="reviewPhotoPreview" hidden>
+                <img id="reviewPhotoImg" src="" alt="Vista previa de tu foto">
+                <button type="button" class="photo-remove" data-i18n="reviews.form.photoRemove"></button>
+              </div>
+              <p class="field-hint" data-i18n="reviews.form.photoHint"></p>
+            </div>
           </label>
           <button class="btn btn-primary btn-block" type="submit" data-i18n="reviews.form.submit"></button>
           <p class="form-status" id="reviewStatus" role="status" aria-live="polite" hidden></p>

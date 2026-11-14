@@ -157,8 +157,10 @@ Eventos: `DOMContentLoaded` (render + init) y `langchange` (vuelve a pintar).
 | Función | Qué hace |
 |---------|----------|
 | `getReviews() → Array` | Lee las opiniones guardadas en `localStorage` (`aurea_reviews`). |
-| `saveReview(review) → void` | Guarda una nueva opinión y vuelve a pintar la lista. |
-| `renderReviews() → void` | Pinta las opiniones guardadas o muestra estado vacío. |
+| `saveReview(review) → void` | Guarda una nueva opinión (incluye `photo` opcional como data URL) y vuelve a pintar la lista y la galería de la comunidad. |
+| `renderReviews() → void` | Pinta las opiniones guardadas. Las que tienen foto se renderizan con clase `.review-with-photo` y miniatura `.review-photo`. |
+| `renderCommunity() → void` | Pinta la galería «Fotos de la comunidad» (`#communityGrid`) con las reseñas que incluyen foto. Oculta la sección si no hay fotos. |
+| `readImageFile(file, callback) → void` | Lee una imagen, la reduce a máximo 1000 px de lado, la comprime a JPEG (0.85) y devuelve un data URL. Valida tamaño máximo de 2 MB. |
 
 ---
 
