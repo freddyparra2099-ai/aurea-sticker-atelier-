@@ -110,7 +110,7 @@ No hay cookies, analítica ni envío de datos a servidores.
 - Textos alternativos en ilustraciones y botones.
 - `prefers-reduced-motion` respetado.
 - Diseño responsive con menú móvil.
-- HTML/CSS/JS sin dependencias externas (solo Google Fonts).
+- HTML/CSS/JS sin dependencias externas (tipografías del sistema: Georgia para títulos, system-ui para cuerpo).
 
 ## Cómo ampliar
 
